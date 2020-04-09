@@ -3,7 +3,8 @@
 
 # Recogida de datos del Ibex35 (para simplificar el formato para mostrar los datos mantenemos las mismas 35 empresas como referencia, en caso de que el listado cambie, se deberia empezar un nuevo listado).
 
-# In[12]:
+# In[1]:
+
 
 
 # Cargando librerias
@@ -145,10 +146,10 @@ def programaRecogida():
 
     #primero nos aseguramos de si el documento ya existe y si no existe lo creamos
     if os.path.isfile('ibex35.csv') == False:
-        df.to_csv('ibex35.csv', encoding='utf −8 ',index=False,sep="\t")
+        df.to_csv('ibex35.csv', encoding='utf −8 ',index=False,sep=",")
 
     #creamos un documento de trabajo importando los datos ya guardados
-    dfGuardado = pd.read_csv('ibex35.csv',sep="\t")
+    dfGuardado = pd.read_csv('ibex35.csv',sep=",")
 
     
     #miramos si hoy ya se ha hecho la carga para evitar cargar dos veces los mismos datos
@@ -159,14 +160,14 @@ def programaRecogida():
         else:
             dfGuardado[today()] = precios #en caso de que la ficha no se modifique (el fin de semana la bolsa no se actualiza) no habra entrada 
 
-        dfGuardado.to_csv('ibex35.csv', encoding='utf −8 ',index=False,sep="\t")
+        dfGuardado.to_csv('ibex35.csv', encoding='utf −8 ',index=False,sep=",")
     else:
         pass
 
 
     
 def plotIbex35(NombreCSVentreComillas):
-    dfGuardado = pd.read_csv(NombreCSVentreComillas,sep="\t")
+    dfGuardado = pd.read_csv(NombreCSVentreComillas,sep=",")
     
     #creamos un listado de cabeceras
     cabeceras=[]
@@ -213,13 +214,13 @@ def plotIbex35(NombreCSVentreComillas):
 
 #esta funcion permite borrar la ultima columna, esto es muy util durante el periodo de pruebas
 def borrarUltimaColumna():
-    dfGuardado = pd.read_csv('ibex35.csv',sep="\t")
+    dfGuardado = pd.read_csv('ibex35.csv',sep=",")
     del dfGuardado[dfGuardado.columns[-1]]
-    dfGuardado.to_csv('ibex35.csv', encoding='utf −8 ',index=False,sep="\t")
+    dfGuardado.to_csv('ibex35.csv', encoding='utf −8 ',index=False,sep=",")
 
 #programa para convertir listados antiguos al formato de nuestro csv con precios en float con punto para decimal
 def cambiarFormatoLista(NombreCSVentreComillas):
-    dfGuardado222 = pd.read_csv(NombreCSVentreComillas,sep="\t")
+    dfGuardado222 = pd.read_csv(NombreCSVentreComillas,sep=",")
     for m in dfGuardado222.columns[1:]:
         sinComa=[]
         for entrada in dfGuardado222[m]:
@@ -227,7 +228,7 @@ def cambiarFormatoLista(NombreCSVentreComillas):
             sinComa.append(round(float(entrada.replace('.','').replace(',','.')),3))
         dfGuardado222[m]=sinComa 
         
-    return dfGuardado222.to_csv(NombreCSVentreComillas, encoding='utf −8 ',index=False,sep="\t")
+    return dfGuardado222.to_csv(NombreCSVentreComillas, encoding='utf −8 ',index=False,sep=",")
 
 
 
