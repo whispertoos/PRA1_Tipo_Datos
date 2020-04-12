@@ -1,5 +1,8 @@
 DOI: https://doi.org/10.5281/zenodo.3748817
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3748817.svg)](https://doi.org/10.5281/zenodo.3748817)
+
+
 Practica 1: Evolución de los precios de los valores del IBEX35
 
 Se trata de un ejercicio de la asignatura Tipología y ciclo de vida de los datos del master de Ciencia de datos de la UOC.
